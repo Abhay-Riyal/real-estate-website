@@ -9,7 +9,7 @@ export default function Header() {
                 <span className='text-slate-700'>Pro</span>
             </h1>
             <form className='bg-slate-100 p-3 rounded-lg'>
-                <input type='text' placeholder='Search...'className='bg-transparent'/>
+                <input type='text' placeholder='Search...'className='bg-transparent focus:outline-none'/>
             </form>
        </div>
     </header>
