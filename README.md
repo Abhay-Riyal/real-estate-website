@@ -38,7 +38,7 @@ Users interested in buying, selling, or renting properties.
    - Frontend: `cd frontend && npm install`
    - Backend: `npm install`
 4. Configure environment variables:
-   - Create a `.env` file in the `backend` directory and set up MongoDB connection URI, JWT secret, etc.
+   - Create a `.env` file in the directory and set up MongoDB connection URI, JWT secret, etc.
 5. Start the development server:
    - Frontend: `cd client && npm start`
    - Backend: `npm start`
