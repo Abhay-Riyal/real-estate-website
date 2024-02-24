@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { errorHandler } from "../utils/errorHandler.js";
-import { DB_NAME } from "../../constants.js";
+import { DB_NAME } from "../constants.js";
 
 export const connectDB= async ()=>{
     try {
