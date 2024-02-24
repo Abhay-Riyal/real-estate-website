@@ -9,17 +9,15 @@ const userSchema = new mongoose.Schema(
       index: true
     },
     email: {
-      type: String,
-      required: true,
-      unique: true,
+        username: String,
+        required: true,
+        unique: true,
     },
     password: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
+        username: String,
+        required: true,
+    }
+},{timestamps: true});
 
 const User = mongoose.model('User', userSchema);
 
