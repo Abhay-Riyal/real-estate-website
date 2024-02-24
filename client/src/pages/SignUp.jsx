@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {useState} from 'react';
 
 export default function SignUp() {
+  const [formData,setFormData]=useState({});
+  const handleChange=(e)=>{
+
+  }
   return (
     <>
       <div className='p-3 max-w-lg mx-auto'>
@@ -12,18 +17,21 @@ export default function SignUp() {
             placeholder="username"
             className="border p-3 rounded-lg"
             id="username"
+            onChange={handleChange}
           />
           <input
             type="text"
             placeholder="email"
             className="border p-3 rounded-lg"
             id="email"
+            onChange={handleChange}
           />
           <input
             type="text"
             placeholder="password"
             className="border p-3 rounded-lg"
             id="password"
+            onChange={handleChange}
           />
           <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>Sign Up</button>
         </form>
