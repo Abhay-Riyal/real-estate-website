@@ -68,10 +68,6 @@ To deploy the application for production use, follow the hosting provider's inst
 - Omkar (@omkar930)
 - Abhay (@Abhay-Riyal)
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 Feel free to explore our platform and revolutionize your real estate experience! If you have any questions or feedback, don't hesitate to reach out to our dedicated team of developers. Happy property hunting! 🏠🌟
 
 
