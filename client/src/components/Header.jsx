@@ -1,51 +1,75 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  refreshSignInStart,
+  refreshSignInSuccess,
+  refreshSignInFailure,
+} from '../redux/user/userSlice.js';
+import Cookies from 'js-cookie';
 
 export default function Header() {
-  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { currentUser, loading } = useSelector((state) => state.user);
+  useEffect(() => {
+    const getUserData = async () => {
+      dispatch(refreshSignInStart());
+      const res = await fetch(`/api/user/`);
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(refreshSignInFailure(data.message));
+        Cookies.remove('access_token');
+        return;
+      }
+      dispatch(refreshSignInSuccess(data));
+      console.log(data);
+    };
+
+    if (Cookies.get('access_token')) getUserData();
+  }, []);
+
   return (
-    <header className="bg-slate-200 shadow-md">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
-        <Link to="/">
-          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap ">
-            <span className="text-slate-500">Estate</span>
-            <span className="text-slate-700">Pro</span>
-          </h1>
-        </Link>
-        <form className="bg-slate-100 p-3 rounded-lg flex items-center">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="bg-transparent focus:outline-none w-24 sm:w-64"
-          />
-          <FaSearch className="text-slate-600" />
-        </form>
-        <ul className="flex gap-4">
+      <header className="bg-slate-200 shadow-md">
+        <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
           <Link to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
-              Home
-            </li>
+            <h1 className="font-bold text-sm sm:text-xl flex flex-wrap ">
+              <span className="text-slate-500">Estate</span>
+              <span className="text-slate-700">Pro</span>
+            </h1>
           </Link>
-          <Link to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
-              About
-            </li>
-          </Link>
-          <Link to="/profile">
-            {currentUser ? (
-              <img
-                className="rounded-full h-7 w-7 object-cover"
-                src={currentUser.avatar}
-                alt="profile"
-              />
-            ) : (
-              <li className=" text-slate-700 hover:underline"> Sign in</li>
-            )}
-          </Link>
-        </ul>
-      </div>
-    </header>
+          <form className="bg-slate-100 p-3 rounded-lg flex items-center">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="bg-transparent focus:outline-none w-24 sm:w-64"
+            />
+            <FaSearch className="text-slate-600" />
+          </form>
+          <ul className="flex gap-4">
+            <Link to="/">
+              <li className="hidden sm:inline text-slate-700 hover:underline">
+                Home
+              </li>
+            </Link>
+            <Link to="/about">
+              <li className="hidden sm:inline text-slate-700 hover:underline">
+                About
+              </li>
+            </Link>
+            <Link to="/profile">
+              {currentUser ? (
+                <img
+                  className="rounded-full h-7 w-7 object-cover"
+                  src={currentUser.avatar}
+                  alt="profile"
+                />
+              ) : (
+                <li className=" text-slate-700 hover:underline"> Sign in</li>
+              )}
+            </Link>
+          </ul>
+        </div>
+      </header>
   );
 }

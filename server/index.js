@@ -1,7 +1,5 @@
 import { connectDB } from './db/index.js';
 import App from './App.js';
-import express from 'express';
-import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -16,11 +14,6 @@ connectDB()
     console.log(`Mongodb connection failed : \n${error}`);
   });
 
-const __dirname = path.resolve();
-App.use(express.static(path.join(__dirname, '/client/dist')));
-App.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
 
 App.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
