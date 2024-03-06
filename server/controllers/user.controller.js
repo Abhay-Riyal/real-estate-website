@@ -4,6 +4,7 @@ import User from '../models/user.model.js';
 import Listing from '../models/listing.model.js';
 
 export const updateUser = async (req, res, next) => {
+  console.log(req.user);
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, 'You can only update your own account!'));
 
@@ -59,7 +60,7 @@ export const getUserListings = async (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user.id);
 
     if (!user) return next(errorHandler(404, 'User not found!'));
 
