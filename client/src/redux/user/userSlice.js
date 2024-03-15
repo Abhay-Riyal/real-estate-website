@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   currentUser: null,
   error: null,
-  loading: false,
+  loading: true
 };
 
 const userSlice = createSlice({
@@ -24,6 +24,9 @@ const userSlice = createSlice({
     },
     refreshSignInStart:(state)=>{
       state.loading=true;
+    },
+    refreshSignInStop:(state)=>{
+      state.loading=false;
     },
     refreshSignInSuccess:(state,action)=>{
       state.currentUser=action.payload;
@@ -89,6 +92,7 @@ export const {
   signOutUserSuccess,
   signOutUserFailure,
   refreshSignInStart,
+  refreshSignInStop,
   refreshSignInSuccess,
   refreshSignInFailure
 } = userSlice.actions;

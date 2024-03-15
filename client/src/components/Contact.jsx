@@ -19,7 +19,7 @@ export default function Contact({ listing }) {
       }
     };
     fetchLandlord();
-  }, [listing.userref]);
+  }, [listing.userRef]);
   return (
     <>
       {landlord && (

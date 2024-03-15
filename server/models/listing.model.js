@@ -21,9 +21,6 @@ const listingSchema = new mongoose.Schema(
     discountPrice: {
       type: Number,
       required: true,
-      // default: function () {
-      //   return this.regularPrice; // Set discountedPrice equal to regularPrice by default
-      // },
     },
     bedrooms: {
       type: Number,

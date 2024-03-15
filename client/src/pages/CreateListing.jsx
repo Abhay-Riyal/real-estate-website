@@ -8,7 +8,6 @@ import {
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Loader from '../components/Loader';
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -22,7 +21,7 @@ export default function CreateListing() {
     type: 'rent',
     bedrooms: 1,
     bathrooms: 1,
-    regularPrice: 50,
+    regularPrice: 0,
     discountPrice: 0,
     offer: false,
     parking: false,
@@ -120,6 +119,9 @@ export default function CreateListing() {
       e.target.type === 'text' ||
       e.target.type === 'textarea'
     ) {
+      if(e.target.type==='number' && e.target.value <0 ){
+         
+      }
       setFormData({
         ...formData,
         [e.target.id]: e.target.value,
@@ -255,7 +257,7 @@ export default function CreateListing() {
                   type="number"
                   id="bedrooms"
                   min="1"
-                  max="10"
+                  max="15"
                   required
                   className="p-3 border border-gray-300 rounded-lg"
                   onChange={handleChange}
@@ -268,7 +270,7 @@ export default function CreateListing() {
                   type="number"
                   id="bathrooms"
                   min="1"
-                  max="10"
+                  max="15"
                   required
                   className="p-3 border border-gray-300 rounded-lg"
                   onChange={handleChange}
@@ -281,16 +283,17 @@ export default function CreateListing() {
                   type="number"
                   id="regularPrice"
                   min="50"
-                  max="10000000"
+                  max="1000000000"
                   required
                   className="p-3 border border-gray-300 rounded-lg"
                   onChange={handleChange}
                   value={formData.regularPrice}
                 />
+                <span>Rupees</span>
                 <div className="flex flex-col items-center">
                   <p>Regular price</p>
                   {formData.type === 'rent' && (
-                    <span className="text-xs">($ / month)</span>
+                    <span className="text-xs">(Rupees / month)</span>
                   )}
                 </div>
               </div>
@@ -300,17 +303,18 @@ export default function CreateListing() {
                     type="number"
                     id="discountPrice"
                     min="0"
-                    max="10000000"
+                    max="1000000000"
                     required
                     className="p-3 border border-gray-300 rounded-lg"
                     onChange={handleChange}
                     value={formData.discountPrice}
                   />
+                  <span>Rupess</span>
                   <div className="flex flex-col items-center">
                     <p>Discounted price</p>
 
                     {formData.type === 'rent' && (
-                      <span className="text-xs">($ / month)</span>
+                      <span className="text-xs">(Rupees / month)</span>
                     )}
                   </div>
                 </div>
