@@ -12,10 +12,11 @@ App.use('/api/user', userRouter);
 App.use('/api/auth', authRouter);
 App.use('/api/listing', listingRouter);
 
-App.use(cors({
-    origin: {"https://real-estate-website-pink.vercel.app/"},
-    methods: ["POST","GET"],
-}
+// App.use(cors({
+//     origin: {"https://real-estate-website-pink.vercel.app/"},
+//     methods: ["POST","GET"],
+//     credentials: true,
+// }
     
-))
+// ))
 export default App;
