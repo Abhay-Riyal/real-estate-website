@@ -12,13 +12,8 @@ export default defineConfig({
     //   },
     // },
     proxy: {
-      '/api': {
-           target: 'https://real-estate-website-server-blue.vercel.app',
-           changeOrigin: true,
-           secure: false,      
-           ws: true,
-       }
-  }
+      '/api':'https://real-estate-website-server-blue.vercel.app',
+    },
   },
   plugins: [react()],
 });
