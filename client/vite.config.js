@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://real-estate-website-server-henna.vercel.app',
-        secure: true,
+       // secure: true,
         changeOrigin: true,
       },
     },
