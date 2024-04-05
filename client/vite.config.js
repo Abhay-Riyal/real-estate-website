@@ -6,9 +6,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://real-estate-website-server-blue.vercel.app',
+        target: 'https://real-estate-website-bfnf.vercel.app',
         secure: true,
-        changeOrigin: true, // Add this if you need to change the origin
+        changeOrigin: true,
       },
     },
   },
